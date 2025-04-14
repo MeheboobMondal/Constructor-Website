@@ -1,0 +1,841 @@
+// global colors
+
+$primaryColor: #fe538d;
+$secondaryColor: #ffb703;
+$textColor: #000;
+
+// fonts
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body{
+    font-family: "Rubik", sans-serif;
+}
+
+h1{
+    font-size: 4.5em;
+}
+h2{
+    font-size: 3em;
+}
+h3{
+    font-size: 2em;
+}
+p{
+    font-size: 1.2em;
+}
+// Navbar variables
+$urbanedge-color: #3498db; // Blue color for UrbanEdge
+$constructions-color: #e74c3c; // Red color for Constructions
+$nav-link-spacing: 15px;
+$navbar-padding: 15px 0;
+$shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+// Navbar styles
+.navbar {
+  padding: $navbar-padding;
+  box-shadow: $shadow;
+
+  &-brand {
+    span:first-child {
+      color: $urbanedge-color;
+    }
+
+    span:last-child {
+      color: $constructions-color;
+    }
+  }
+
+  // Navigation links
+  .nav-link {
+    margin-left: $nav-link-spacing;
+    font-weight: 500;
+  }
+}
+// Hero Section Variables
+$hero-bg-image: url('../../assets/img/hero.jpg');
+$subtitle-color: #FFB703;
+$title-color: #fff;
+$text-color: #fff;
+$primary-btn-color: #FFB703;
+$overlay-gradient: radial-gradient(circle at center, 
+                                rgba(0,0,0,0.7) 0%, 
+                                rgba(0,0,0,0.8) 100%);
+
+// Hero Section Styles
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background: $hero-bg-image no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $overlay-gradient;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    color: $text-color;
+  }
+
+  .hero-subtitle {
+    color: $subtitle-color;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .hero-title {
+    color: $title-color;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero-text {
+    color: $text-color;
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+  }
+
+  .hero-buttons {
+    .btn {
+      padding: 12px 30px;
+      font-weight: 600;
+      margin: 0 10px;
+      border-radius: 4px;
+
+      &-primary {
+        background-color: $primaryColor;
+        border-color: $primaryColor;
+        color: #000;
+      }
+
+      &-primary:hover {
+        color: #000;
+        background-color: $secondaryColor;
+      }
+      
+    }
+  }
+  
+    .btn {
+        padding: 12px 30px;
+        font-weight: 600;
+        margin: 0 10px;
+        border-radius: 4px;
+        &-secondry{
+        background-color: $secondaryColor;
+        border-color: $secondaryColor;
+        color: #000;
+        }
+
+        &-secondry:hover {
+        color: #000;
+        background-color: $primaryColor;
+         }
+    }
+  }
+
+
+// Responsive Adjustments
+@media (max-width: 768px) {
+  .hero-section {
+    &-title {
+      font-size: 2.5rem;
+    }
+    
+    &-subtitle {
+      font-size: 1.2rem;
+    }
+    
+    &-buttons .btn {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+    }
+  }
+}
+.custom-pink{
+    color : $primaryColor
+}
+
+.service-card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 500px; // Increased card height
+    position: relative; // Needed for absolute positioning
+  
+    img {
+      height: 50vh;
+    //   width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    //   background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      transform: translateY(100%);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      height: auto;
+      max-height: 90%; // Ensure it doesn't cover the entire card
+    }
+  
+    .card-title {
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      position: absolute;
+      top: -3.5rem; // Position title above the content
+      left: 2rem;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  
+    .card-details {
+      opacity: 0;
+      transition: all 0.3s ease 0.2s;
+      transform: translateY(20px);
+      
+      p {
+        margin-bottom: 1.5rem;
+        color: #555;
+      }
+    }
+  
+    &:hover {
+      img {
+        transform: scale(1.05); // Subtle zoom effect on hover
+        overlay: rgba(0, 0, 0, 0.5);
+        opacity: .3;
+      }
+  
+      .card-content {
+        transform: translateY(0);
+      }
+  
+      .card-details {
+        opacity: 1;
+        transform: translateY(0);
+      }
+  
+      .card-title {
+        color: #333; // Title color changes on hover
+        text-shadow: none;
+        top: .1rem; // Moves to top of content area
+      }
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 992px) {
+    .service-card {
+      height: 350px;
+      
+      .card-content {
+        padding: 1.5rem;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .service-card {
+      height: 300px;
+      
+      .card-title {
+        font-size: 1.3rem;
+        top: -3rem;
+      }
+    }
+  }
+.iconCircle {
+    width: 60px;
+    height: 60px;
+}
+.height{
+  height: 50vh;
+}
+// _variables.scss
+$primary-color: #f8d56b;
+$text-color: #333;
+$divider-color: #e0e0e0;
+
+// _card.scss
+.review-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 500px;
+  margin: 0 auto;
+  
+  .stars {
+    margin-bottom: 1rem;
+    
+    .star {
+      color: $primary-color;
+      font-size: 1.5rem;
+      margin-right: 0.2rem;
+    }
+  }
+  
+  .review-text {
+    color: $text-color;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .divider {
+    border: 0;
+    height: 1px;
+    background-color: $divider-color;
+    margin: 1.5rem 0;
+  }
+  
+  .reviewer-info {
+    display: flex;
+    align-items: center;
+    
+    .reviewer-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    
+    .reviewer-name {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+      color: $text-color;
+    }
+    
+    .reviewer-title {
+      font-size: 0.9rem;
+      color: lighten($text-color, 20%);
+      margin-bottom: 0;
+    }
+  }
+}
+// Variables
+$yellow-color: #FFD700;
+$text-color: #FFD700;
+$light-text: #fff;
+$footer-bg: #222725;
+$border-color: #dee2e6;
+
+// Footer Styles
+.footer-section {
+  background-color: $footer-bg;
+  
+  .text-yellow {
+    color: $yellow-color;
+  }
+  
+  .footer-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-subheading {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: $text-color;
+  }
+  
+  .footer-text {
+    color: $light-text;
+    line-height: 1.6;
+  }
+  
+  .footer-links {
+    li {
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-link {
+      color: $light-text;
+      text-decoration: none;
+      transition: color 0.3s;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  .footer-contact {
+    .footer-icon {
+      color: $yellow-color;
+      min-width: 20px;
+    }
+    
+    span {
+      color: $light-text;
+    }
+  }
+  
+  .footer-divider {
+    border-color: $border-color;
+    opacity: 0.7;
+  }
+  
+  .copyright-text {
+    color: $light-text;
+    font-size: 0.9rem;
+  }
+}
+.heroOthers {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 400px;
+  background: $hero-bg-image no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+// Custom card styling
+.custom-card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-img-top {
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+  }
+  
+  &:hover .card-img-top {
+      transform: scale(1.03);
+  }
+  
+  .card-body {
+      padding: 1.5rem;
+  }
+  
+  .card-title {
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: #333;
+  }
+  
+  
+  .read-more-btn {
+      border-radius: 50px;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
+      border: none;
+      background-color: $primaryColor;
+      transition: all 0.3s ease;
+      
+      &:hover {
+          background-color: $secondaryColor;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(78, 115, 223, 0.3);
+      }
+  }
+}
+// Variables
+$primary-color: $primaryColor;
+$secondary-color: #6c757d;
+$light-gray: #ffffff;
+$dark-gray: #343a40;
+
+// Contact Info Styles
+.contact-info {
+    background-color: $light-gray;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    height: 100%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    
+    .contact-heading {
+        color: $primary-color;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        position: relative;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.5rem;
+            width: 3rem;
+            height: 2px;
+            background-color: $primary-color;
+        }
+    }
+    
+    .contact-detail {
+        color: $secondary-color;
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+}
+
+// Contact Form Styles
+.contact-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    
+    .form-title {
+        color: $dark-gray;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+    }
+    
+    .form-label {
+        font-weight: 600;
+        color: $dark-gray;
+    }
+    
+    .form-control {
+        border: 1px solid #dee2e6;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 0.25rem rgba($primary-color, 0.25);
+        }
+    }
+    
+    .submit-btn {
+        padding: 0.75rem 2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05rem;
+        transition: all 0.3s ease;
+        background-color: darken($primaryColor, 10%);
+        
+        &:hover {
+            background-color: darken($secondaryColor, 10%);
+            transform: translateY(-2px);
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .contact-info {
+        margin-bottom: 2rem;
+    }
+}
+// Variables
+$primary-color: #3498db;
+$secondary-color: #f8f9fa;
+$card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$card-border-radius: 10px;
+$input-focus-border: 2px solid $primary-color;
+
+// Body styling
+body {
+    background-color: $secondary-color;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// Login card styling
+.login-card {
+    width: 100%;
+    max-width: 450px;
+    border-radius: $card-border-radius;
+    box-shadow: $card-shadow;
+    border: none;
+
+    .card-title {
+        color: $primaryColor;
+        font-weight: 600;
+    }
+
+    .form-control {
+        border-radius: $card-border-radius - 5;
+        padding: 10px 15px;
+        border: 1px solid #ced4da;
+
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: none;
+            border-width: 2px;
+        }
+    }
+
+    .btn-primary {
+        background-color: $primaryColor;
+        border: none;
+        border-radius: $card-border-radius - 5;
+        padding: 10px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+
+        &:hover {
+            background-color: darken($secondaryColor, 10%);
+        }
+    }
+
+    a {
+        color: $primary-color;
+        font-weight: 500;
+
+        &:hover {
+            color: darken($primary-color, 15%);
+        }
+    }
+}
+// Variables
+$sidebar-bg: #f8f9fa;
+$content-bg: #ffffff;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$border-radius: 0.5rem;
+
+// Sidebar styles
+.sidebar {
+    background-color: $sidebar-bg;
+    border-radius: $border-radius;
+    box-shadow: 0 0.5rem 1rem $shadow-color;
+    height: 100%;
+    
+    &-title {
+        color: #495057;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .nav-link {
+        color: #495057;
+        padding: 0.5rem 0;
+        
+        &:hover {
+            color: #0d6efd;
+        }
+        
+        &.active {
+            color: #0d6efd;
+            font-weight: 500;
+        }
+    }
+}
+
+// Main content styles
+.main-content {
+    background-color: $content-bg;
+    border-radius: $border-radius;
+    box-shadow: 0 0.5rem 1rem $shadow-color;
+    height: 100%;
+    
+    .welcome-heading {
+        color: #0d6efd;
+        margin-bottom: 1rem;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .sidebar, .main-content {
+        margin-bottom: 1rem;
+    }
+}
+// Services Section Styling
+.services-section {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin: 2rem 0;
+
+  .services-title {
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: #3498db;
+    }
+  }
+
+  .services-text {
+    color: #7f8c8d;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .services-btn {
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // Table Custom Styling
+  .table {
+    margin-top: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    
+    thead {
+      th {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+      }
+    }
+    
+    tbody {
+      tr {
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background-color: rgba(52, 152, 219, 0.05);
+        }
+      }
+      
+      td, th {
+        vertical-align: middle;
+      }
+    }
+    
+    .badge {
+      font-weight: 500;
+      padding: 0.35em 0.65em;
+      font-size: 0.75em;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .services-section {
+    padding: 1.5rem;
+    
+    .row {
+      flex-direction: column;
+      text-align: center;
+      
+      .col-md-4 {
+        margin-top: 1.5rem;
+        text-align: center !important;
+      }
+    }
+    
+    .services-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .services-text {
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}
+
+
+
+// Custom styles
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  
+  &-header {
+    background-color: $primary-color;
+    color: white;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border-color: darken($primary-color, 5%);
+  
+  &:hover, &:focus {
+    background-color: darken($primary-color, 8%);
+    border-color: darken($primary-color, 12%);
+  }
+}
+
+.btn-outline-secondary {
+  &:hover {
+    color: white;
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
+}
+
+.form-control, .form-select {
+  &:focus {
+    border-color: lighten($primary-color, 20%);
+    box-shadow: 0 0 0 0.25rem rgba($primary-color, 0.25);
+  }
+}
+
+#generateSlug {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    i {
+      transform: rotate(180deg);
+    }
+  }
+  
+  i {
+    transition: transform 0.3s ease;
+  }
+}
