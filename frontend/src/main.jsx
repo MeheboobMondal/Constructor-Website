@@ -21,6 +21,9 @@ import EditService from './components/backend/EditService.jsx'
 import ShowProject from './components/backend/projects/ShowProject.jsx'
 import AddProjects from './components/backend/projects/AddProjects.jsx'
 import UpdateProject from './components/backend/projects/UpdateProject.jsx'
+import ShowArticle from './components/backend/blogs/ShowArticle.jsx'
+import CreateArticle from './components/backend/blogs/CreateArticle.jsx'
+import UpdateArticle from './components/backend/blogs/UpdateArticle.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -73,6 +76,24 @@ const router = createBrowserRouter(
           <Route path='admin/project/edit/:id' element={
           <RequireAuth>
             <UpdateProject />
+          </RequireAuth>
+          } />
+          
+          <Route path='admin/blogs' element={
+          <RequireAuth>
+            <ShowArticle />
+          </RequireAuth>
+          } />
+          
+          <Route path='admin/blogs/create' element={
+          <RequireAuth>
+            <CreateArticle />
+          </RequireAuth>
+          } />
+          
+          <Route path='admin/blogs/update/:id' element={
+          <RequireAuth>
+            <UpdateArticle />
           </RequireAuth>
           } />
         

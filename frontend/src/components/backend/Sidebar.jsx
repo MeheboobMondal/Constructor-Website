@@ -19,7 +19,7 @@ const Sidebar = () => {
                             <Link className="nav-link" to="/admin/projects">Projects</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Reports</a>
+                            <Link className="nav-link" to="/admin/blogs">Blogs</Link>
                         </li>
                         <li className="nav-item">
                             <button onClick={logout} className="nav-link">Logout</button>

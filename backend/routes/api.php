@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\TempImageController;
 use App\Http\Controllers\Authentication;
+use App\Http\Controllers\front\blogController as FrontBlogController;
 use App\Http\Controllers\front\projectController as FrontProjectController;
 use App\Http\Controllers\front\serviceController as FrontServiceController;
 use Illuminate\Http\Request;
@@ -17,6 +19,11 @@ Route::get('get-limit-services', [FrontServiceController::class, 'limitData']);
 // prrojects routes
 Route::get('get-all-projects', [FrontProjectController::class, 'getAllData']);
 Route::get('get-limit-projects', [FrontProjectController::class, 'limitData']);
+
+// Blogs Routes
+
+Route::get('blogs/get-all-article', [FrontBlogController::class, 'allData']);
+Route::get('blogs/get-limit-article', [FrontBlogController::class, 'latest']);
     
 Route::group(['middleware' => ['auth:sanctum']], function(){
     // protected routes
@@ -33,5 +40,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::put('project/update/{id}', [ProjectController::class, 'update']);
     Route::get('project/show/{id}', [ProjectController::class, 'show']);
     Route::delete('project/delete/{id}', [ProjectController::class, 'destroy']);
+    Route::post('blogs/create', [BlogController::class, 'create']);
+    Route::get('blogs/show', [BlogController::class, 'show']);
+    Route::get('blogs/index/{id}', [BlogController::class, 'index']);
+    Route::put('blogs/update/{id}', [BlogController::class, 'update']);
+    Route::delete('blogs/delete/{id}', [BlogController::class, 'destroy']);
 
 });

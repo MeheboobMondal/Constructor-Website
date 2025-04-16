@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BlogCard from './BlogCard'
-import image1 from '../../assets/img/construction7.jpg'
-import image2 from '../../assets/img/engineer-4925135_1280.jpg'
+import {apiUrl, fileUrl} from '../backend/Http'
 
 const Blog = () => {
+  const [articles, setArticles] = useState([])
+  const limit = 4
+  const loadBlogs = async () => {
+    const req = await fetch(`${apiUrl}/blogs/get-limit-article?limit=${limit}`,{
+      method : "GET",
+      'Accept' : 'application/json'
+    })
+    const result =await req.json()
+
+    setArticles(result.data)
+  }
+
+  useEffect(() => {
+    loadBlogs()
+  }, [])
   return (
     <>
       <section className="py-5 mb-5">
@@ -18,8 +32,13 @@ const Blog = () => {
     {/* <!-- Four cards in a single row --> */}
     <div className="container py-5">
         <div className="row">
-            <BlogCard img={image1} title="One of the defining characteristics of civil construction" link="#" col4="col-lg-4"/>
-            <BlogCard img={image2} title="Key Elements of Civil Construction within the construction" link="#" col4="col-lg-4"/>
+
+          {articles && (
+            articles.map((itm) => (
+
+              <BlogCard img={`${fileUrl}uploads/blogs/small/${itm.image}`} title={itm.title} link="#" col4="col-lg-4"/>
+            ))
+          )}
         </div>
     </div>
   </div>
