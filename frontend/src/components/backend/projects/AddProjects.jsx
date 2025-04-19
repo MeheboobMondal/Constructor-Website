@@ -72,7 +72,7 @@ const AddProjects = ({placeholder}) => {
         console.log(result.data.id)
     
         if(result.status == false){
-            toast.error($result.message)
+            toast.error(result.message)
         }else{
             setImageId(result.data.id)
         }

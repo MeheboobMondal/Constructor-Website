@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import image1 from '../../assets/img/pexels-sindre-fs-1040880.jpg';
-import image2 from '../../assets/img/pexels-pixabay-220453.jpg';
-import image3 from '../../assets/img/author-2.jpg';
+import {apiUrl, fileUrl} from '../backend/Http'
+
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,6 +14,27 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 const Testimonials = () => {
+  const [data, setData] = useState([])
+  const getData = async () => {
+    const req = await fetch(`${apiUrl}/get-all-testimonials`,{
+      method : "GET",
+      headers : {
+        'Accept' : 'applcation/json',
+      }
+    })
+    const result = await req.json()
+
+    if(result.status == true){
+      setData(result.data)
+      setMessage(result.message)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  
   return (
     <>
 <section className="py-5 mb-5">
@@ -30,98 +51,48 @@ const Testimonials = () => {
      slidesPerView={3}
      navigation
      pagination={{ clickable: true }}
-     scrollbar={{ draggable: true }}
      onSwiper={(swiper) => console.log(swiper)}
      onSlideChange={() => console.log('slide change')}
+     breakpoints={{
+      200: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 50,
+      },
+    }}
     >
+      {data && (
+            data.map((itm) => (
       <SwiperSlide>
       <div className="">
         <div className="review-card h-100">
-          <div className="stars">
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-          </div>
-          <p className="review-text">This product exceeded all my expectations. The quality is outstanding and the customer service was exceptional. I would definitely recommend this to anyone looking for premium quality.</p>
-          <hr className="divider" />
-          <div className="reviewer-info">
-            <img src={image1} alt="Reviewer" className="reviewer-img" />
+          
+          
+              <div key={itm.id}>
+                {/* <p className="review-text">{itm.message}</p> */}
+                <p className="review-text" dangerouslySetInnerHTML={{ __html: itm.message }} ></p>
+              <hr className="divider" />
+            <div className="reviewer-info">
+            <img src={`${fileUrl}uploads/testimonial/${itm.image}`} alt="Reviewer" className="reviewer-img" />
             <div className="reviewer-details">
-              <h5 className="reviewer-name">John Doe</h5>
-              <p className="reviewer-title">CEO</p>
+              <h5 className="reviewer-name">{itm.citation}</h5>
             </div>
           </div>
+              </div>
+            
         </div>
       </div>
       </SwiperSlide>
-      <SwiperSlide>
-      <div className="">
-        <div className="review-card h-100">
-          <div className="stars">
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-          </div>
-          <p className="review-text">The team delivered our project ahead of schedule while maintaining excellent quality standards. Their attention to detail was impressive throughout the entire process.</p>
-          <hr className="divider" />
-          <div className="reviewer-info">
-            <img src={image2} alt="Reviewer" className="reviewer-img" />
-            <div className="reviewer-details">
-              <h5 className="reviewer-name">Jane Smith</h5>
-              <p className="reviewer-title">Project Manager</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      </SwiperSlide>
-      <SwiperSlide>
-      <div className="">
-        <div className="review-card h-100">
-          <div className="stars">
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-          </div>
-          <p className="review-text">Working with this company was a pleasure. They understood our vision and executed it perfectly. The communication was excellent at every stage of the project.</p>
-          <hr className="divider" />
-          <div className="reviewer-info">
-            <img src={image3} alt="Reviewer" className="reviewer-img" />
-            <div className="reviewer-details">
-              <h5 className="reviewer-name">Michael Johnson</h5>
-              <p className="reviewer-title">Director</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      </SwiperSlide>
-      <SwiperSlide>
-      <div className="">
-        <div className="review-card h-100">
-          <div className="stars">
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-            <span className="star">★</span>
-          </div>
-          <p className="review-text">This product exceeded all my expectations. The quality is outstanding and the customer service was exceptional. I would definitely recommend this to anyone looking for premium quality.</p>
-          <hr className="divider" />
-          <div className="reviewer-info">
-            <img src={image1} alt="Reviewer" className="reviewer-img" />
-            <div className="reviewer-details">
-              <h5 className="reviewer-name">John Doe</h5>
-              <p className="reviewer-title">CEO</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      </SwiperSlide>
+      ))
+    )}
+     
       
     </Swiper>
     

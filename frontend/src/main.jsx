@@ -24,6 +24,9 @@ import UpdateProject from './components/backend/projects/UpdateProject.jsx'
 import ShowArticle from './components/backend/blogs/ShowArticle.jsx'
 import CreateArticle from './components/backend/blogs/CreateArticle.jsx'
 import UpdateArticle from './components/backend/blogs/UpdateArticle.jsx'
+import ShowTestimonial from './components/backend/testimonial/ShowTestimonial.jsx'
+import CreateTestimonial from './components/backend/testimonial/CreateTestimonial.jsx'
+import UpdateTestimonial from './components/backend/testimonial/UpdateTestimonial.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -94,6 +97,24 @@ const router = createBrowserRouter(
           <Route path='admin/blogs/update/:id' element={
           <RequireAuth>
             <UpdateArticle />
+          </RequireAuth>
+          } />
+          
+          <Route path='admin/testimonials' element={
+          <RequireAuth>
+            <ShowTestimonial />
+          </RequireAuth>
+          } />
+          
+          <Route path='admin/testimonial/create' element={
+          <RequireAuth>
+            <CreateTestimonial />
+          </RequireAuth>
+          } />
+          
+          <Route path='admin/testimonial/update/:id' element={
+          <RequireAuth>
+            <UpdateTestimonial />
           </RequireAuth>
           } />
         
